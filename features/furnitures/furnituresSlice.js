@@ -9,6 +9,7 @@ export const fetchFurnitures = createAsyncThunk(
       return Promise.reject("Unable to fetch, status: " + response.status);
     }
     const data = await response.json();
+    console.log("Fetched data:", data); // Log the fetched data
     return data;
   }
 );

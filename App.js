@@ -1,10 +1,10 @@
-import Main from "./screens/MainComponent";
+//import Main from "./screens/MainComponent";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Loading from "./components/LoadingComponent";
-import HomeScreen from "./screens/HomeScreen";
+import HomeScreen from "./screens/home/HomeScreen";
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
       <PersistGate loading={<Loading />} persistor={persistor}>
         <NavigationContainer>
           {/* <Main /> */}
-          <HomeScreen/>
+          <HomeScreen />
         </NavigationContainer>
       </PersistGate>
     </Provider>
