@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { furnituresReducer } from "../features/furnitures/furnituresSlice";
+import { favoritesReducer } from "../features/favorites/favoritesSlice";
 
 import {
   persistStore,
@@ -11,8 +13,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { furnituresReducer } from "../features/furnitures/furnituresSlice";
-import { favoritesReducer } from "../features/favorites/favoritesSlice";
 
 const config = {
   key: "root",
