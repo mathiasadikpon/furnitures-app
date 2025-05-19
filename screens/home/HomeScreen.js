@@ -1,64 +1,85 @@
-import { useEffect } from "react";
-import { FlatList, View } from "react-native";
-import { Card, ListItem, Text } from "react-native-elements";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchFurnitures } from "../../features/furnitures/furnituresSlice";
-import Loading from "../../components/LoadingComponent";
-const HomeScreen = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchFurnitures());
-  }, [dispatch]);
-  const furnitures = useSelector((state) => state.furnitures);
-  console.log("furniture " + furnitures.length);
-  const { furnituresArray, isLoading, errMess } = furnitures;
+import { useEffect, useRef } from "react";
+import { Text, View, Animated } from "react-native";
+import { Card } from "react-native-elements";
+import { useSelector } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
+import Loading from "../components/LoadingComponent";
 
-  const homeItem = ({ item }) => {
-    return (
-      <ListItem>
-        <Card containerStyle={{ padding: 0 }}>
-          <Card.Image source={{ uri: item.images[0] }}>
-            <View style={{ justifyContent: "center", flex: 1 }}>
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  fontSize: 20,
-                }}
-              >
-                {item.title}
-              </Text>
-            </View>
-          </Card.Image>
-          <Text
-            style={{ margin: 20 }}
-          >{`Price: ${item.price}\nRating: ${item.rating} (${item.reviews.length})`}</Text>
-        </Card>
-      </ListItem>
-    );
-  };
+const FeaturedItem = (props) => {
+  const { item } = props;
 
-  if (isLoading) {
+  if (props.isLoading) {
     return <Loading />;
   }
-  if (errMess) {
+  if (props.errMess) {
     return (
       <View>
-        <Text>{errMess}</Text>
+        <Text>{props.errMess}</Text>
       </View>
     );
   }
+  if (item) {
+    return (
+      <Card containerStyle={{ padding: 0 }}>
+        <Card.Image source={{ uri: baseUrl + item.image }}>
+          <View style={{ justifyContent: "center", flex: 1 }}>
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: 20,
+              }}
+            >
+              {item.name}
+            </Text>
+          </View>
+        </Card.Image>
+        <Text style={{ margin: 20 }}>{item.description}</Text>
+      </Card>
+    );
+  }
+  return <View />;
+};
+
+const HomeScreen = () => {
+  const campsites = useSelector((state) => state.campsites);
+  const promotions = useSelector((state) => state.promotions);
+  const partners = useSelector((state) => state.partners);
+  const scaleValue = useRef(new Animated.Value(0)).current;
+  const scaleAnimation = Animated.timing(scaleValue, {
+    toValue: 1,
+    duration: 1500,
+    useNativeDriver: true,
+  });
+
+  const featCampsite = campsites.campsitesArray.find((item) => item.featured);
+  const featPromotion = promotions.promotionsArray.find(
+    (item) => item.featured
+  );
+  const featPartner = partners.partnersArray.find((item) => item.featured);
+
+  useEffect(() => {
+    scaleAnimation.start();
+  }, []);
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home Screen</Text>
-      <Text>Welcome to the Home Screen!</Text>
-      <Text>{furnitures.length}</Text>
-      <FlatList
-        data={furnituresArray}
-        renderItem={homeItem}
-        keyExtractor={(item) => item.id.toString()}
+    <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
+      <FeaturedItem
+        item={featCampsite}
+        isLoading={campsites.isLoading}
+        errMess={campsites.errMess}
       />
-    </View>
+      <FeaturedItem
+        item={featPromotion}
+        isLoading={promotions.isLoading}
+        errMess={promotions.errMess}
+      />
+      <FeaturedItem
+        item={featPartner}
+        isLoading={partners.isLoading}
+        errMess={partners.errMess}
+      />
+    </Animated.ScrollView>
   );
 };
 
