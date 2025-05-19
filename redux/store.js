@@ -13,6 +13,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { mensShirtsReducer } from "../features/mens-shirts/mensShirtsSlice";
+import { mensShoesReducer } from "../features/mens-shoes/mensShoesSlice";
 
 const config = {
   key: "root",
@@ -25,6 +27,8 @@ export const store = configureStore({
     // Add your reducers here
     furnitures: furnituresReducer,
     favorites: favoritesReducer,
+    mensShirts: mensShirtsReducer,
+    mensShoes: mensShoesReducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
