@@ -28,7 +28,8 @@ export const store = configureStore({
     furnitures: furnituresReducer,
     favorites: favoritesReducer,
     mensShirts: mensShirtsReducer,
-    mensShoes: mensShoesReducer,
+    womensDresses: womensDressesReducer,
+    womensShoes: womensShoesReducer,
   }),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
