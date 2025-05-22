@@ -15,6 +15,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { mensShirtsReducer } from "../features/mens-shirts/mensShirtsSlice";
 import { mensShoesReducer } from "../features/mens-shoes/mensShoesSlice";
+import { womensDressesReducer } from "../features/womens-dresses/womensDressesSlice";
 
 const config = {
   key: "root",
