@@ -42,9 +42,6 @@ const FeaturedItem = (props) => {
 };
 
 const HomeScreen = () => {
-  const campsites = useSelector((state) => state.campsites);
-  const promotions = useSelector((state) => state.promotions);
-  const partners = useSelector((state) => state.partners);
   const scaleValue = useRef(new Animated.Value(0)).current;
   const scaleAnimation = Animated.timing(scaleValue, {
     toValue: 1,
