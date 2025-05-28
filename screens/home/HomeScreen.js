@@ -40,7 +40,7 @@ const FeaturedItem = (props) => {
   }
   return <View />;
 };
-
+// Importing necessary libraries and components
 const HomeScreen = () => {
   const scaleValue = useRef(new Animated.Value(0)).current;
   const scaleAnimation = Animated.timing(scaleValue, {
