@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "../components/LoadingComponent";
 
+// Importing necessary selectors
 const FeaturedItem = (props) => {
   const { item } = props;
 
