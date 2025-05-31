@@ -19,6 +19,7 @@ const FeaturedItem = (props) => {
       </View>
     );
   }
+  // If item is not provided, return an empty view
   if (item) {
     return (
       <Card containerStyle={{ padding: 0 }}>
