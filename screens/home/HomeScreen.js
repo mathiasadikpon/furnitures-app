@@ -51,11 +51,9 @@ const HomeScreen = () => {
     useNativeDriver: true,
   });
 
-  const featCampsite = campsites.campsitesArray.find((item) => item.featured);
-  const featPromotion = promotions.promotionsArray.find(
-    (item) => item.featured
-  );
-  const featPartner = partners.partnersArray.find((item) => item.featured);
+  //const featCampsite = campsites.campsitesArray.find((item) => item.featured);
+  //const featPromotion = promotions.promotionsArray.find((item) => item.featured);
+  //const featPartner = partners.partnersArray.find((item) => item.featured);
 
   useEffect(() => {
     scaleAnimation.start();
@@ -72,11 +70,6 @@ const HomeScreen = () => {
         item={featPromotion}
         isLoading={promotions.isLoading}
         errMess={promotions.errMess}
-      />
-      <FeaturedItem
-        item={featPartner}
-        isLoading={partners.isLoading}
-        errMess={partners.errMess}
       />
     </Animated.ScrollView>
   );
