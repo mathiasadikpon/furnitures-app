@@ -61,7 +61,7 @@ const HomeScreen = () => {
 
   return (
     <Animated.ScrollView style={{ transform: [{ scale: scaleValue }] }}>
-      <FeaturedItem
+      {/* <FeaturedItem
         item={featCampsite}
         isLoading={campsites.isLoading}
         errMess={campsites.errMess}
@@ -70,7 +70,7 @@ const HomeScreen = () => {
         item={featPromotion}
         isLoading={promotions.isLoading}
         errMess={promotions.errMess}
-      />
+      /> */}
     </Animated.ScrollView>
   );
 };
